@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Fullscreen Lighting Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="m-0 p-0 h-screen w-screen overflow-hidden">
+    <!-- Main background -->
+    <div id="lightingBackground" class="fixed inset-0 w-screen h-screen transition-colors duration-300"></div>
+
+    <!-- Toggle Button (Initially Hidden) -->
+    <button 
+        id="toggleButton"
+        class="fixed top-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible hover:bg-white/95"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+    </button>
+
+    <!-- Floating controls panel -->
+    <div id="controlPanel" class="control-panel fixed top-4 right-4 bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-lg transition-all duration-300">
+        <div class="space-y-4">
+            <h2 class="text-lg font-semibold text-gray-800">补光控制</h2>
+            
+            <!-- Color Picker Section -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">颜色</label>
+                <input 
+                    type="color" 
+                    id="colorPicker"
+                    class="h-10 w-full cursor-pointer rounded border border-gray-300"
+                    value="#ffffff"
+                >
+            </div>
+
+            <!-- Color Brightness Slider Section -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">亮度</label>
+                <input 
+                    type="range" 
+                    id="brightnessSlider"
+                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    min="0" 
+                    max="100" 
+                    value="100"
+                >
+                <div class="text-sm text-gray-500 text-right">
+                    <span id="brightnessValue">100</span>%
+                </div>
+            </div>
+
+            <!-- Fullscreen Button -->
+            <button 
+                id="fullscreenButton"
+                class="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            >
+                进入全屏
+            </button>
+
+            <!-- Preset Colors -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">预设颜色</label>
+                <div class="grid grid-cols-4 gap-2">
+                    <button class="preset-color w-full h-8 rounded-md" style="background-color: #ffffff" data-color="#ffffff"></button>
+                    <button class="preset-color w-full h-8 rounded-md" style="background-color: #ffcdd2" data-color="#ffcdd2"></button>
+                    <button class="preset-color w-full h-8 rounded-md" style="background-color: #fff9c4" data-color="#fff9c4"></button>
+                    <button class="preset-color w-full h-8 rounded-md" style="background-color: #c8e6c9" data-color="#c8e6c9"></button>
+                </div>
+            </div>
+
+            <!-- Keyboard Shortcuts Info -->
+            <div class="text-xs text-gray-500 mt-4">
+                快捷键:<br>
+                ↑/↓: 调节亮度
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
